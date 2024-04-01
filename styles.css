@@ -42,6 +42,7 @@ background-color: rgb(170, 201, 113);
     grid-template-rows: repeat(auto-fill, min(1fr));
     gap: 20px;
     /* grid-auto-flow: column; */
+    padding: 20px;
 }
 .book-card {
     height: 200px;
@@ -51,4 +52,21 @@ background-color: rgb(170, 201, 113);
     align-items: center;
     justify-items: center;
     text-align: center;
+}
+
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      magenta,
+      rebeccapurple,
+      dodgerblue,
+      green
+    );
+    opacity: 0.75;
+  }
+
+.dialog-modal {
+    height: 300px;
+    width: 300px;
+    place-self: center;
 }
