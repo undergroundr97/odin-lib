@@ -79,11 +79,55 @@ NEWTITLE.append(NEWBOOK);
 // ADDING NEW BOOK TO DOM
 
 const dialog = document.querySelector("dialog");
+
 NEWBOOK.addEventListener('click', () => {
     dialog.showModal();
 })
-// const showButton = document.querySelector("dialog + button");
-// const closeButton = document.querySelector("dialog button");
+
+const cancelBtn = document.querySelector('dialog #cancelBtn')
+cancelBtn.setAttribute('class', 'gigachad')
+
+cancelBtn.addEventListener('click', () => {
+ dialog.close();
+})
+
+const submitBtn = document.querySelector('dialog #confirmBtn')
+submitBtn.setAttribute('class', 'gigachad');
+
+submitBtn.addEventListener('click', (e)=> {
+    e.preventDefault;
+})
+
+submitBtn.addEventListener('click', () => {
+    let title = booktitle.value;
+    let author = bookauthor.value;
+    let pages = bookpages.value;
+    let selectedStatus;
+    let statusOption = document.getElementsByName('read')
+    const formRes = document.getElementById('bookInput')
+    for (let option of statusOption){
+        if(option.checked){
+            selectedStatus = option.value;
+            break;
+        }
+    }
+    let read = selectedStatus;
+
+    let newBookObj = new BookObject(title, author, pages, read);
+    myLibrary.push(newBookObj);
+    formRes.reset();
+    appendBook();
+    
+})
+
+// function getRadioValue() {
+//     let radioSelected = ""
+//     const radioSelect = document.getElementById('#readstatus')
+//     for (let i = 0; i < radioSelect.length; i++){
+//         radioSelect.value = radioSelected;
+//     }
+//     return radioSelected;
+// }
 
 // // "Show the dialog" button opens the dialog modally
 // showButton.addEventListener("click", () => {
