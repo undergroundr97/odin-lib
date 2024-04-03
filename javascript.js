@@ -44,14 +44,12 @@ const bookContainer = document.querySelector('.book-container')
 
 //append Book to DOM
 function appendBook(){
-    // let counter = 0;
-    // mainContainer.innerHTML = '';
-    // mainContainer.append(bookContainer);
-   myLibrary.forEach((book) => {
+    
+   myLibrary.forEach((book, index) => {
     if (myLibrary.indexOf(book) >= counter){
     const bookCard = document.createElement('div');
     bookCard.setAttribute('class', 'book-card')
-
+    bookCard.dataset.index = index;
     const titleText = document.createElement('h2');
     titleText.innerText = book.title;
     titleText.setAttribute('class', 'book-title');
@@ -60,9 +58,17 @@ function appendBook(){
     const pagesText = document.createElement('p');
     pagesText.innerText = book.pages;
     const readText = document.createElement('p');
-     readText.innerHTML = book.read;
-
-    bookCard.append(titleText,authorText,pagesText,readText);
+     readText.innerText = book.read;
+    const deleteBtn = document.createElement('button')
+    deleteBtn.innerText = 'DeleteBook'
+    deleteBtn.addEventListener('click', () =>{
+        index = bookCard.index;
+        myLibrary.splice(index,1)
+        counter--
+        bookCard.remove()
+        appendBook();
+    })
+    bookCard.append(titleText,authorText,pagesText,readText,deleteBtn);
     bookContainer.appendChild(bookCard);
 
     counter++;
@@ -76,9 +82,12 @@ const NEWTITLE = document.querySelector('.title-book')
 NEWTITLE.append(NEWBOOK);
 
 
-// ADDING NEW BOOK TO DOM
+// BUTTONS VARIABLE
 
 const dialog = document.querySelector("dialog");
+const formRes = document.getElementById('bookInput')
+const bookCard = document.querySelector('.book-card')
+
 
 NEWBOOK.addEventListener('click', () => {
     dialog.showModal();
@@ -89,22 +98,35 @@ cancelBtn.setAttribute('class', 'gigachad')
 
 cancelBtn.addEventListener('click', () => {
  dialog.close();
+    formRes.reset();
 })
 
+const closeBtn = document.createElement('button')
+dialog.appendChild(closeBtn)
+closeBtn.innerText = 'X'
+closeBtn.setAttribute('class', 'closeBtn');
+closeBtn.addEventListener('click',  () =>{
+    dialog.close();
+    formRes.reset();
+})
+
+
+
+
+
+// ADDING NEW BOOK TO DOM
 const submitBtn = document.querySelector('dialog #confirmBtn')
 submitBtn.setAttribute('class', 'gigachad');
 
 submitBtn.addEventListener('click', (e)=> {
     e.preventDefault;
 })
-
 submitBtn.addEventListener('click', () => {
     let title = booktitle.value;
     let author = bookauthor.value;
     let pages = bookpages.value;
     let selectedStatus;
     let statusOption = document.getElementsByName('read')
-    const formRes = document.getElementById('bookInput')
     for (let option of statusOption){
         if(option.checked){
             selectedStatus = option.value;
@@ -117,8 +139,18 @@ submitBtn.addEventListener('click', () => {
     myLibrary.push(newBookObj);
     formRes.reset();
     appendBook();
-    
 })
+//REMOVING BOOK FROM DOM 
+// function deleteBook(book) {
+//     index = myLibrary.indexOf(book);
+//     myLibrary.splice(index, 1);
+//     counter--;
+//     appendBook();
+// }
+
+
+
+
 
 // function getRadioValue() {
 //     let radioSelected = ""
