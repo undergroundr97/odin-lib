@@ -25,21 +25,21 @@
                     <fieldset class="fieldsetInput">
                         <div class="form-row row0">
                             <label for="booktitle">Title:</label>
-                            <input type="text" name="booktitle" id="booktitle" required>
+                            <input type="text" name="booktitle" id="booktitle" required onkeyup="verifyInput()">
                         </div>
                         <div class="form-row row1">
                             <label for="bookauthor">Author:</label>
-                            <input type="text" name="bookauthor" id="bookauthor">
+                            <input type="text" name="bookauthor" id="bookauthor" onkeyup="verifyInput()">
                         </div>
                         <div class="form-row row2">
                             <label for="bookpages">Pages:</label>
-                            <input type="number" name="bookpages" id="bookpages" min="0" >
+                            <input type="number" name="bookpages" id="bookpages" min="0" onchange="verifyInput()" onkeyup="verifyInput()" >
                         </div>
                         <div class="form-row row3">
                             <label for="readstatus-1" class="label1">Read</label>
-                            <input type="radio" name="read" id="readstatus-1" value="read" checked>
+                            <input type="radio" name="read" id="readstatus-1" value="Read!" checked>
                             <label for="readstatus" class="label2">Not Read</label>
-                            <input type="radio" name="read" id="readstatus-2" value="notread">
+                            <input type="radio" name="read" id="readstatus-2" value="Not Read!">
                         </div>
                         <div class="confirmBtn">
                             <button id="confirmBtn" formmethod="dialog">Add a Book!</button>

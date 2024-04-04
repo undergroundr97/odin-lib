@@ -4,13 +4,13 @@ const myLibrary = [
         title: "Skyward",
         author: "Brandon Sanderson",
         pages: "503",
-        read: "read",
+        read: 'Read!',
     },
     {
         title: "Mistborn - Final Empire",
         author: "Brandon Sanderson",
         pages: "772",
-        read: "read",
+        read: "Not Read!",
     }
 ];
 let counter = 0;
@@ -57,8 +57,6 @@ function appendBook(){
     authorText.innerText = book.author;
     const pagesText = document.createElement('p');
     pagesText.innerText = book.pages;
-    const readText = document.createElement('p');
-     readText.innerText = book.read;
     const deleteBtn = document.createElement('button')
     deleteBtn.innerText = 'DeleteBook'
     deleteBtn.addEventListener('click', () =>{
@@ -68,7 +66,28 @@ function appendBook(){
         bookCard.remove()
         appendBook();
     })
-    bookCard.append(titleText,authorText,pagesText,readText,deleteBtn);
+    const readNotRead = document.createElement('button')
+    bookCard.appendChild(readNotRead)
+    readNotRead.innerText = book.read
+    if(book.read === 'Read!') {
+        readNotRead.setAttribute('class', 'bookRead')
+    } else if (book.read === "Not Read!"){
+        readNotRead.setAttribute('class', 'bookNotRead')
+    }
+    readNotRead.addEventListener('click', () => {
+        switch (readNotRead.innerText) {
+        case 'Read!':
+            readNotRead.innerText = 'Not Read!'
+            readNotRead.setAttribute('class','bookNotRead')
+            readNotRead.removeAttribute('bookRead')
+            break
+        case 'Not Read!':
+        readNotRead.innerText= 'Read!'
+        readNotRead.setAttribute('class','bookRead')
+        readNotRead.removeAttribute('bookNotRead')
+            break
+    }})
+    bookCard.append(titleText,authorText,pagesText,deleteBtn,readNotRead);
     bookContainer.appendChild(bookCard);
 
     counter++;
@@ -80,7 +99,10 @@ const NEWBOOK = document.createElement('button')
 NEWBOOK.innerHTML = 'ADD NEW BOOK'
 const NEWTITLE = document.querySelector('.title-book')
 NEWTITLE.append(NEWBOOK);
-
+NEWBOOK.addEventListener('click', () => {
+    dialog.showModal();
+    verifyInput();
+})
 
 // BUTTONS VARIABLE
 
@@ -88,18 +110,6 @@ const dialog = document.querySelector("dialog");
 const formRes = document.getElementById('bookInput')
 const bookCard = document.querySelector('.book-card')
 const fieldset = document.querySelector('.fieldsetInput')
-
-
-NEWBOOK.addEventListener('click', () => {
-    dialog.showModal();
-})
-
-
-// cancelBtn.addEventListener('click', () => {
-//  dialog.close();
-//     formRes.reset();
-// })
-
 const closeBtn = document.createElement('button')
 fieldset.appendChild(closeBtn)
 closeBtn.innerText = 'X'
@@ -110,12 +120,23 @@ closeBtn.addEventListener('click',  () =>{
 })
 
 
-
+//verifying user input to add a book 
+function verifyInput() {
+    let title = booktitle.value;
+    let author = bookauthor.value;
+    let pages = bookpages.value;
+    if (title === "" ||  author === "" || pages === ""){
+        document.getElementById('submitBtnId').disabled = true;
+    }
+    else 
+    document.getElementById('submitBtnId').disabled = false;
+}
 
 
 // ADDING NEW BOOK TO DOM
 const submitBtn = document.querySelector('dialog #confirmBtn')
 submitBtn.setAttribute('class', 'gigachad');
+submitBtn.setAttribute('id', 'submitBtnId')
 
 submitBtn.addEventListener('click', (e)=> {
     e.preventDefault;
@@ -133,9 +154,6 @@ submitBtn.addEventListener('click', () => {
         }
     }
     let read = selectedStatus;
-    if (title !== "" || author !== "" || pages !== "" || selectedStatus !== ""){
-        document.getElementsByClassName('.gigachad').disabled = true;
-    }
     let newBookObj = new BookObject(title, author, pages, read);
     myLibrary.push(newBookObj);
     formRes.reset();

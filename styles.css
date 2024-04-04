@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -52,21 +53,17 @@ background-color: rgb(170, 201, 113);
     align-items: center;
     justify-items: center;
     text-align: center;
+    text-wrap: wrap;
 }
-
-::backdrop {
-    /* background-image: linear-gradient(
-      45deg,
-      magenta,
-      rebeccapurple,
-      dodgerblue,
-      green
-    );
-    opacity: 0.75; */
-  }
-
+.book-title {
+    width: 300px;
+    text-align: center;
+    word-wrap: break-word;
+    
+}
+/* MODAL AND CSS FORM */
 .dialog-modal {
-    height: 300px;
+    height: 330px;
     width: 300px;
     place-self: center;
     padding: 10px;
@@ -106,6 +103,7 @@ background-color: rgb(170, 201, 113);
     grid-template-columns: auto 20px;
     grid-template-rows: auto auto;
     column-gap: 20px;
+    row-gap: 10px;
 }
 
 #readstatus-1 {
@@ -145,7 +143,14 @@ background-color: rgb(170, 201, 113);
     margin-top: 10px;
     width: 
 }
-#confirmBtn {
+#submitBtnId {
     height: 50px;
     width: 100px;
+}
+
+.bookRead {
+    background-color: rgb(144, 163, 90);
+}
+.bookNotRead {
+    background-color: red;
 }
