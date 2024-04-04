@@ -10,6 +10,11 @@ const myLibrary = [
         title: "Mistborn - Final Empire",
         author: "Brandon Sanderson",
         pages: "772",
+        read: "Read!",
+    },
+    {   title: "The Name of the Wind",
+        author: "Patrick Rothfuss",
+        pages: "880",
         read: "Not Read!",
     }
 ];
