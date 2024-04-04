@@ -87,22 +87,21 @@ NEWTITLE.append(NEWBOOK);
 const dialog = document.querySelector("dialog");
 const formRes = document.getElementById('bookInput')
 const bookCard = document.querySelector('.book-card')
+const fieldset = document.querySelector('.fieldsetInput')
 
 
 NEWBOOK.addEventListener('click', () => {
     dialog.showModal();
 })
 
-const cancelBtn = document.querySelector('dialog #cancelBtn')
-cancelBtn.setAttribute('class', 'gigachad')
 
-cancelBtn.addEventListener('click', () => {
- dialog.close();
-    formRes.reset();
-})
+// cancelBtn.addEventListener('click', () => {
+//  dialog.close();
+//     formRes.reset();
+// })
 
 const closeBtn = document.createElement('button')
-dialog.appendChild(closeBtn)
+fieldset.appendChild(closeBtn)
 closeBtn.innerText = 'X'
 closeBtn.setAttribute('class', 'closeBtn');
 closeBtn.addEventListener('click',  () =>{
@@ -134,48 +133,16 @@ submitBtn.addEventListener('click', () => {
         }
     }
     let read = selectedStatus;
-
+    if (title !== "" || author !== "" || pages !== "" || selectedStatus !== ""){
+        document.getElementsByClassName('.gigachad').disabled = true;
+    }
     let newBookObj = new BookObject(title, author, pages, read);
     myLibrary.push(newBookObj);
     formRes.reset();
     appendBook();
+    dialog.close()
 })
-//REMOVING BOOK FROM DOM 
-// function deleteBook(book) {
-//     index = myLibrary.indexOf(book);
-//     myLibrary.splice(index, 1);
-//     counter--;
-//     appendBook();
-// }
 
-
-
-
-
-// function getRadioValue() {
-//     let radioSelected = ""
-//     const radioSelect = document.getElementById('#readstatus')
-//     for (let i = 0; i < radioSelect.length; i++){
-//         radioSelect.value = radioSelected;
-//     }
-//     return radioSelected;
-// }
-
-// // "Show the dialog" button opens the dialog modally
-// showButton.addEventListener("click", () => {
-//   dialog.showModal();
-// });
-
-// // "Close" button closes the dialog
-// closeButton.addEventListener("click", () => {
-//   dialog.close();
-// });
-
-// const confirmBtn = dialog.querySelector('#confirmBtn')
-
-// confirmBtn.addEventListener('click', (e) => {
-//     confirmBtn
-// }
 
 appendBook();
 

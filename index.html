@@ -22,28 +22,29 @@
                 <h1>Your Books!</h1>
                 <dialog class="dialog-modal">
                    <form action="" id="bookInput">
-                    <div class="input-title">
-                        <label for="booktitle">Title:</label>
-                        <input type="text" name="booktitle" id="booktitle" required>
-                    </div>
-                    <div class="input-author">
-                        <label for="bookauthor">Author:</label>
-                        <input type="text" name="bookauthor" id="bookauthor">
-                    </div>
-                    <div class="input-pages">
-                        <label for="bookpages">Pages:</label>
-                        <input type="number" name="bookpages" id="bookpages">
-                    </div>
-                    <div class="input-read">
-                        <label for="readstatus-1">Read</label>
-                        <input type="radio" name="read" id="readstatus-2" value="read">
-                        <label for="readstatus">Not Read</label>
-                        <input type="radio" name="read" id="readstatus-2" value="notread">
-                    </div>
-                    <div>
-                        <button id="cancelBtn" value="cancel" formmethod="dialog">Cancel</button>
-                        <button id="confirmBtn" formmethod="dialog">Submit</button>
-                    </div>
+                    <fieldset class="fieldsetInput">
+                        <div class="form-row row0">
+                            <label for="booktitle">Title:</label>
+                            <input type="text" name="booktitle" id="booktitle" required>
+                        </div>
+                        <div class="form-row row1">
+                            <label for="bookauthor">Author:</label>
+                            <input type="text" name="bookauthor" id="bookauthor">
+                        </div>
+                        <div class="form-row row2">
+                            <label for="bookpages">Pages:</label>
+                            <input type="number" name="bookpages" id="bookpages" min="0" >
+                        </div>
+                        <div class="form-row row3">
+                            <label for="readstatus-1" class="label1">Read</label>
+                            <input type="radio" name="read" id="readstatus-1" value="read" checked>
+                            <label for="readstatus" class="label2">Not Read</label>
+                            <input type="radio" name="read" id="readstatus-2" value="notread">
+                        </div>
+                        <div class="confirmBtn">
+                            <button id="confirmBtn" formmethod="dialog">Add a Book!</button>
+                        </div>
+                    </fieldset>
                    </form>
                   </dialog>
             </div>
