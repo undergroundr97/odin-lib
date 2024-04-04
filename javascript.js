@@ -39,7 +39,7 @@ function addBookToLibrary(title,author,pages,read){
 // DOM Elements 
 const mainContainer = document.querySelector('.container')
 const bookContainer = document.querySelector('.book-container')
-
+const header = document.querySelector('.header')
 
 
 //append Book to DOM
@@ -55,10 +55,16 @@ function appendBook(){
     titleText.setAttribute('class', 'book-title');
     const authorText = document.createElement('h2');
     authorText.innerText = book.author;
+    authorText.setAttribute('class', 'book-author')
     const pagesText = document.createElement('p');
-    pagesText.innerText = book.pages;
-    const deleteBtn = document.createElement('button')
-    deleteBtn.innerText = 'DeleteBook'
+    pagesText.innerText = `Pages: ${book.pages}`;
+    pagesText.setAttribute('class', 'book-pages');
+    const bookIcon = document.createElement('img')
+    bookIcon.src = 'icons/book-svgrepo-com.svg'
+    bookIcon.setAttribute('class', 'book-Icon')
+    const deleteBtn = document.createElement('img')
+    deleteBtn.src = 'icons/delete.svg'
+    deleteBtn.setAttribute('class', 'deleteBtn')
     deleteBtn.addEventListener('click', () =>{
         index = bookCard.index;
         myLibrary.splice(index,1)
@@ -77,9 +83,11 @@ function appendBook(){
     readNotRead.addEventListener('click', () => {
         switch (readNotRead.innerText) {
         case 'Read!':
+            // let read = book.read
             readNotRead.innerText = 'Not Read!'
             readNotRead.setAttribute('class','bookNotRead')
             readNotRead.removeAttribute('bookRead')
+           
             break
         case 'Not Read!':
         readNotRead.innerText= 'Read!'
@@ -87,7 +95,7 @@ function appendBook(){
         readNotRead.removeAttribute('bookNotRead')
             break
     }})
-    bookCard.append(titleText,authorText,pagesText,deleteBtn,readNotRead);
+    bookCard.append(titleText,authorText,pagesText,deleteBtn,readNotRead,bookIcon);
     bookContainer.appendChild(bookCard);
 
     counter++;
@@ -95,8 +103,16 @@ function appendBook(){
    }
 )}
 
-const NEWBOOK = document.createElement('button')
-NEWBOOK.innerHTML = 'ADD NEW BOOK'
+const newBookIconHeader = document.createElement('img')
+newBookIconHeader.src = 'icons/pileofbooks.svg'
+header.appendChild(newBookIconHeader);
+const headerText = document.createElement('span')
+headerText.innerText = 'My Library'
+headerText.setAttribute('class','headerText')
+header.appendChild(headerText)
+const NEWBOOK = document.createElement('img')
+NEWBOOK.src = 'icons/plus.svg'
+NEWBOOK.setAttribute('class', 'newBookIcon')
 const NEWTITLE = document.querySelector('.title-book')
 NEWTITLE.append(NEWBOOK);
 NEWBOOK.addEventListener('click', () => {
@@ -110,9 +126,10 @@ const dialog = document.querySelector("dialog");
 const formRes = document.getElementById('bookInput')
 const bookCard = document.querySelector('.book-card')
 const fieldset = document.querySelector('.fieldsetInput')
-const closeBtn = document.createElement('button')
+const closeBtn = document.createElement('img')
 fieldset.appendChild(closeBtn)
 closeBtn.innerText = 'X'
+closeBtn.src = 'icons/close.svg'
 closeBtn.setAttribute('class', 'closeBtn');
 closeBtn.addEventListener('click',  () =>{
     dialog.close();
