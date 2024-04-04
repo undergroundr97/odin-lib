@@ -159,12 +159,19 @@ padding: 15px;
     grid-column: 2;
     grid-row: 5;
     margin-top: 10px;
-    width: 
+
 }
 #submitBtnId {
     height: 50px;
     width: 100px;
+    font-family: Simple Plan;
+    border-radius: 200px
 }
+#submitBtnId:hover {
+background-color: #FFFFFF;
+}
+
+
 .bookRead,
 .bookNotRead{
     grid-column: 2;
